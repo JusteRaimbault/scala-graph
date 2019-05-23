@@ -4,7 +4,7 @@ package immutable
 import java.io.{ObjectInputStream, ObjectOutputStream}
 
 import scala.language.higherKinds
-import scala.collection.{Set => AnySet, AbstractTraversable, EqSetFacade}
+import scala.collection.{Set => AnySet, AbstractTraversable}
 import scala.collection.mutable.{ArrayBuffer, Buffer}
 import scala.util.Random
 

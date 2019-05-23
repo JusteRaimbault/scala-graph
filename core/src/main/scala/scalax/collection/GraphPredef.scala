@@ -3,7 +3,7 @@ package scalax.collection
 import language.{higherKinds, implicitConversions}
 import scala.annotation.unchecked.{uncheckedVariance => uV}
 
-import scala.collection.{AbstractIterable, SeqFacade}
+import scala.collection.AbstractIterable
 import GraphEdge.{DiEdgeLike, DiHyperEdgeLike, EdgeCopy, EdgeLike}
 
 /** This object serves as a container for several `Graph`-related definitions like

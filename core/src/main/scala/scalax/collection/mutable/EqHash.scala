@@ -1,6 +1,6 @@
 package scalax.collection.mutable
 
-import scala.collection.Util.nextPositivePowerOfTwo
+import scalax.collection.Util.nextPositivePowerOfTwo
 import scala.collection.mutable.Builder
 
 trait EqHash[A <: AnyRef, This <: EqHash[A, This]] {

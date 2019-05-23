@@ -1,13 +1,11 @@
 package scalax.collection
 
 import scala.annotation.{switch, tailrec}
-import scala.collection.FilterableSet
-import scala.collection.FilteredSet
+import scalax.collection.FilteredSet
 import scala.collection.generic.FilterMonadic
 import scala.collection.mutable.{ArrayBuffer, PriorityQueue, Queue, ArrayStack => Stack, Map => MMap}
 import scala.language.higherKinds
 import scala.math.abs
-
 import scalax.collection.GraphPredef.EdgeLikeIn
 import immutable.SortedArraySet
 import mutable.{ArraySet, EqHashMap, EqHashSet}

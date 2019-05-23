@@ -2,7 +2,7 @@ package scalax.collection
 
 import language.{higherKinds, implicitConversions}
 import scala.annotation.{switch, tailrec}
-import scala.collection.{AbstractTraversable, EqSetFacade}
+import scala.collection.AbstractTraversable
 import scala.collection.mutable.{ArrayBuffer, Buffer, ArrayStack => Stack, Map => MMap}
 
 import GraphPredef.{EdgeLikeIn, OuterEdge, OuterElem}

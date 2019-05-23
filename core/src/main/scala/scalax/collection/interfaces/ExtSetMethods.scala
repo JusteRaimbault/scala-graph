@@ -1,9 +1,9 @@
 package scalax.collection
 package interfaces
 
-import scala.util.Random
+import scalax.collection.FilteredSet
 
-import collection.FilteredSet
+import scala.util.Random
 
 trait ExtSetMethods[A] {
   this: AnySet[A] =>

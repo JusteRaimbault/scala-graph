@@ -1,6 +1,7 @@
-package scala.collection
+package scalax.collection
 
-import scala.collection.generic.{CanBuildFrom, FilterMonadic}
+import scala.collection.{Iterator, Seq, Set, Traversable}
+import scala.collection.immutable._
 
 /** Wraps `t` to a [[scala.collection.Seq Seq]]. It helps to avoid the creation of a copy
   *  of the elements of `t` when passing `t` to repeated parameters of type `A`.
@@ -27,7 +28,7 @@ final class SeqFacade[A](t: Traversable[A]) extends Seq[A] {
   *
   * @param t the underlying `Traversable` with unique elements.
   */
-class SetFacade[A](t: Traversable[A]) extends immutable.Set[A] {
+class SetFacade[A](t: Traversable[A]) extends scala.collection.immutable.Set[A] {
   def contains(elem: A)           = t exists (_ == elem)
   final def iterator: Iterator[A] = t.toIterator
   final def -(elem: A)            = t.toSet - elem
@@ -57,18 +58,18 @@ final class EqSetFacade[A <: AnyRef](t: Traversable[A]) extends SetFacade[A](t) 
 trait FilterableSet[A] {
   this: FilteredSet[A] =>
 
-  def withFilter(q: (A) => Boolean): immutable.Set[A] with FilterableSet[A] =
+  def withFilter(q: (A) => Boolean): scala.collection.immutable.Set[A] with FilterableSet[A] =
     new FilteredSet(set, elem => p(elem) && q(elem))
 }
 
 /** A `Set` implementation extended by `FilterableSet`.
   */
-final class FilteredSet[A](val set: Set[A], val p: (A) => Boolean) extends immutable.Set[A] with FilterableSet[A] {
+final class FilteredSet[A](val set: Set[A], val p: (A) => Boolean) extends scala.collection.immutable.Set[A] with FilterableSet[A] {
   def contains(elem: A)     = p(elem) && (set contains elem)
   def iterator: Iterator[A] = set.iterator withFilter p
   def -(elem: A)            = if (contains(elem)) iterator.toSet - elem else this
   def +(elem: A)            = if (contains(elem)) this else iterator.toSet + elem
 
-  override def withFilter(q: (A) => Boolean): immutable.Set[A] with FilterableSet[A] =
+  override def withFilter(q: (A) => Boolean): scala.collection.immutable.Set[A] with FilterableSet[A] =
     super[FilterableSet].withFilter(q)
 }

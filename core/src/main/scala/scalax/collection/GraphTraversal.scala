@@ -1,7 +1,7 @@
 package scalax.collection
 
 import scala.annotation.tailrec
-import scala.collection.{AbstractIterable, AbstractTraversable, EqSetFacade}
+import scala.collection.{AbstractIterable, AbstractTraversable}
 import scala.collection.mutable.{ArrayBuffer, Builder}
 import scala.language.{higherKinds, implicitConversions}
 import scala.math.{max, min}

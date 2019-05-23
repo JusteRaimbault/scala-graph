@@ -73,7 +73,9 @@ ThisBuild / resolvers ++= Seq(
 lazy val defaultSettings = Defaults.coreDefaultSettings ++ Seq(
   scalaVersion := Version.compiler_2_12,
   crossScalaVersions := Seq(scalaVersion.value, Version.compiler_2_11),
-  organization := "org.scala-graph",
+  //organization := "org.scala-graph",
+  organization := "org.openmole",
+  credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
   Test / parallelExecution := false,
   Compile / doc / scalacOptions ++=
     Opts.doc.title(name.value) ++
@@ -93,3 +95,11 @@ lazy val defaultSettings = Defaults.coreDefaultSettings ++ Seq(
     "org.scala-lang.modules" %% "scala-xml" % "1.0.5" % "test"
   )
 ) ++ GraphSonatype.settings
+
+//ThisBuild / organization := "org.openmole"
+
+publishMavenStyle in ThisBuild := true
+
+publishTo := Some("Sonatype Snapshots Nexus" at "https://oss.sonatype.org/content/repositories/snapshots")
+
+

@@ -1,4 +1,4 @@
-package scala.collection
+package scalax.collection
 
 import java.lang.Integer.numberOfLeadingZeros
 
