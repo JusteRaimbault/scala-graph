@@ -3,15 +3,15 @@ import Keys._
 
 /* Adapted version of Paul's suggestion on org.improving */
 trait Sonatype {
-  def projectUrl: String
+  def projectUrl= "https://github.com/openmole/spatialdata"
   def licenseDistribution = "repo"
-  def licenseName: String
-  def licenseUrl: String
-  def developerId: String
-  def developerName: String
-  def developerUrl: String
-  def scmUrl        = "https://github.com/scala-graph/scala-graph"
-  def scmConnection = "scm:git:git@github.com:scala-graph/scala-graph.git"
+  def licenseName = "Affero GPLv3"
+  def licenseUrl= "http://www.gnu.org/licenses/"
+  def developerId= "justeraimbault"
+  def developerName= "Juste Raimbault"
+  //def developerUrl: String
+  def scmUrl        = "https://github.com/JusteRaimbault/scala-graph.git"
+  def scmConnection = "scm:git:git@github.com:JusteRaimbault/scala-graph.git"
 
   protected def isSnapshot(s: String) = s.trim endsWith "SNAPSHOT"
   protected val nexus                 = "https://oss.sonatype.org/"
@@ -33,7 +33,6 @@ trait Sonatype {
     <developers><developer>
       <id>{ developerId }</id>
       <name>{ developerName }</name>
-      <url>{ developerUrl }</url>
     </developer></developers>
 
   def settings: Seq[Setting[_]] = Seq(

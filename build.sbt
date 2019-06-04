@@ -21,8 +21,7 @@ lazy val core = project
       libraryDependencies ++= Seq(
         "org.scalacheck" %% "scalacheck"   % "1.13.4" % "optional;provided",
         "org.gephi"      % "gephi-toolkit" % "0.9.2"  % "test" classifier "all"
-      ),
-      publishConfiguration := publishConfiguration.value.withOverwrite(true)
+      )
     )
   )
 
@@ -75,7 +74,10 @@ lazy val defaultSettings = Defaults.coreDefaultSettings ++ Seq(
   scalaVersion := Version.compiler_2_12,
   crossScalaVersions := Seq(scalaVersion.value, Version.compiler_2_11),
   //organization := "org.scala-graph", // patched version published as org.openmole.library
-  credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
+  //organization := "org.openmole.library",
+  publishConfiguration := publishConfiguration.value.withOverwrite(true),
+  //sonatypeProfileName := "org.openmole",
+  //credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
   Test / parallelExecution := false,
   Compile / doc / scalacOptions ++=
     Opts.doc.title(name.value) ++
@@ -94,7 +96,7 @@ lazy val defaultSettings = Defaults.coreDefaultSettings ++ Seq(
     "org.scalatest"          %% "scalatest" % "3.0.1" % "test",
     "org.scala-lang.modules" %% "scala-xml" % "1.0.5" % "test"
   )
-) ++ GraphSonatype.settings
+) //++ GraphSonatype.settings
 
 ThisBuild / organization := "org.openmole.library"
 
@@ -110,13 +112,22 @@ publishTo in ThisBuild := {
 
 ThisBuild / publishConfiguration := publishConfiguration.value.withOverwrite(true)
 
-credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+ThisBuild / credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
 licenses in ThisBuild := Seq("Affero GPLv3" -> url("http://www.gnu.org/licenses/"))
 
 homepage in ThisBuild := Some(url("https://github.com/openmole/spatialdata"))
 
 scmInfo in ThisBuild := Some(ScmInfo(url("https://github.com/JusteRaimbault/scala-graph.git"), "scm:git:git@github.com:JusteRaimbault/scala-graph.git"))
+
+pomExtra in ThisBuild := (
+  <developers>
+    <developer>
+      <id>justeraimbault</id>
+      <name>Juste Raimbault</name>
+    </developer>
+  </developers>
+  )
 
 sonatypeProfileName := "org.openmole"
 
