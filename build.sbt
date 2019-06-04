@@ -107,7 +107,7 @@ publishTo in ThisBuild := {
   else Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
 
-//publishConfiguration := publishConfiguration.value.withOverwrite(true)
+publishConfiguration := publishConfiguration.value.withOverwrite(true)
 
 credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
