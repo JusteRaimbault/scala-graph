@@ -21,7 +21,8 @@ lazy val core = project
       libraryDependencies ++= Seq(
         "org.scalacheck" %% "scalacheck"   % "1.13.4" % "optional;provided",
         "org.gephi"      % "gephi-toolkit" % "0.9.2"  % "test" classifier "all"
-      )
+      ),
+      publishConfiguration := publishConfiguration.value.withOverwrite(true)
     )
   )
 
