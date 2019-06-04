@@ -125,8 +125,8 @@ import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
 releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,
   inquireVersions,
-  setReleaseVersion,
-  tagRelease,
+  //setReleaseVersion,
+  //tagRelease,
   releaseStepCommand("publishSigned"),
   releaseStepCommand("sonatypeReleaseAll")
 )
