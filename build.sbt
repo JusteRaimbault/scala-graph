@@ -73,8 +73,7 @@ ThisBuild / resolvers ++= Seq(
 lazy val defaultSettings = Defaults.coreDefaultSettings ++ Seq(
   scalaVersion := Version.compiler_2_12,
   crossScalaVersions := Seq(scalaVersion.value, Version.compiler_2_11),
-  //organization := "org.scala-graph",
-  organization := "org.openmole",
+  //organization := "org.scala-graph", // patched version published as org.openmole.library
   credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
   Test / parallelExecution := false,
   Compile / doc / scalacOptions ++=
@@ -96,10 +95,40 @@ lazy val defaultSettings = Defaults.coreDefaultSettings ++ Seq(
   )
 ) ++ GraphSonatype.settings
 
-//ThisBuild / organization := "org.openmole"
+ThisBuild / organization := "org.openmole.library"
+
+useGpg := true
 
 publishMavenStyle in ThisBuild := true
 
-publishTo := Some("Sonatype Snapshots Nexus" at "https://oss.sonatype.org/content/repositories/snapshots")
+publishTo in ThisBuild := {
+  val nexus = "https://oss.sonatype.org/"
+  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
+  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
+
+//publishConfiguration := publishConfiguration.value.withOverwrite(true)
+
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+
+licenses in ThisBuild := Seq("Affero GPLv3" -> url("http://www.gnu.org/licenses/"))
+
+homepage in ThisBuild := Some(url("https://github.com/openmole/spatialdata"))
+
+scmInfo in ThisBuild := Some(ScmInfo(url("https://github.com/JusteRaimbault/scala-graph.git"), "scm:git:git@github.com:JusteRaimbault/scala-graph.git"))
+
+sonatypeProfileName := "org.openmole"
+
+import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
+
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  setReleaseVersion,
+  tagRelease,
+  releaseStepCommand("publishSigned"),
+  releaseStepCommand("sonatypeRelease")
+)
+
 
 
