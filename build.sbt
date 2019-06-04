@@ -128,7 +128,7 @@ releaseProcess := Seq[ReleaseStep](
   setReleaseVersion,
   tagRelease,
   releaseStepCommand("publishSigned"),
-  releaseStepCommand("sonatypeRelease")
+  releaseStepCommand("sonatypeReleaseAll")
 )
 
 
